@@ -53,12 +53,13 @@ function CoolDownDoStuff()
     file.Write("mapvote/recentmaps.txt", util.TableToJSON(recentmaps))
 end
 
-function MapVote.Start(length, current, limit, prefix, callback)
+function MapVote.Start(length, current, limit, prefix, excluded, callback)
     current = current or MapVote.Config.AllowCurrentMap or false
     length = length or MapVote.Config.TimeLimit or 28
     limit = limit or MapVote.Config.MapLimit or 24
     cooldown = MapVote.Config.EnableCooldown or MapVote.Config.EnableCooldown == nil and true
     prefix = prefix or MapVote.Config.MapPrefixes
+    excluded = excluded or MapVote.Config.ExcludedMaps
     autoGamemode = autoGamemode or MapVote.Config.AutoGamemode or MapVote.Config.AutoGamemode == nil and true
 
     local is_expression = false
@@ -90,6 +91,7 @@ function MapVote.Start(length, current, limit, prefix, callback)
         local mapstr = map:sub(1, -5):lower()
         if(not current and game.GetMap():lower()..".bsp" == map) then continue end
         if(cooldown and table.HasValue(recentmaps, map)) then continue end
+        if(table.HasValue(excluded, mapstr)) then continue end
 
         if is_expression then
             if(string.find(map, prefix)) then -- This might work (from gamemode.txt)
