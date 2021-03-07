@@ -35,13 +35,23 @@ You no longer have to edit any files for MapVote to work with Trouble in Terrori
 
 You can edit the config.txt located in garrysmod/data/mapvote/ to change several settings.  It should look like this by default (if it's empty, just copy this into it):
 ```JSON
-{"RTVPlayerCount":3,"MapLimit":24,"TimeLimit":28,"AllowCurrentMap":false,"MapPrefixes":{"1":"ttt_"},"MapsBeforeRevote":3,"EnableCooldown":true}
+{
+	"RTVPlayerCount":3,
+	"MapLimit":24,
+	"TimeLimit":28,
+	"AllowCurrentMap":false,
+	"MapPrefixes":{"1":"ttt_"},
+	"ExcludedMaps":[],
+	"MapsBeforeRevote":3,
+	"EnableCooldown":true
+}
 ```
 * "RTVPlayerCount" is the minimum number of players that need to be online (on TTT) for RTV to work.
 * "MapLimit" is the number of maps shown on the vote screen.
 * "TimeLimit" is how long the vote is shown for.
 * "AllowCurrentMap" true/false to allow a the current map in the map vote list.
 * "MapPrefixes" are the prefixes of the maps that should be used in the vote.
+* "ExcludedMaps" are the names of then maps that should not be displayed in the vote list.
 * "MapsBeforeRevote" is the number of maps that must be played before a map is in the vote menu again (if EnableCooldown is true)
 * "EnableCooldown" is a true/false variable on whether to remove a map from voting for a while after it's played.
 * "MapsBeforeRevote" is how many maps before the map is taken off the cooldown list after it's played.
